@@ -50,5 +50,7 @@ extension Array where Element == NSItemProvider {
             }
         return true
         }
+       return true
     }
+    
 }
