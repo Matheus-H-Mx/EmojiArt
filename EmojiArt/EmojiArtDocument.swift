@@ -10,21 +10,36 @@ import SwiftUI
 class EmojiArtDocument: ObservableObject
 {
     
-    static var palette: String = "⭐️☁️🍎🌎⚾️"
+    static let palette: String = "⭐️☁️🍎🌎⚾️"
     
-    @Published private var emojiArt: EmojiArt = EmojiArt()
+   // @Published
+    
+    private var emojiArt: EmojiArt = EmojiArt(){
+        willSet {
+            objectWillChange.send()
+        }
+        
+        didSet {
+            UserDefaults.standard.set(emojiArt.json, forKey: "EmojiArtDocument.Untitled")
+        }
+    }
+    
+    private static let untitled = "EmojiArtDocument.Untitled"
+    
+    init () {
+        emojiArt = EmojiArt(json: UserDefaults.standard.data(forKey: EmojiArtDocument.untitled)) ?? EmojiArt()
+        fetchBackgroundImageData()
+    }
     
     @Published private(set)var backgroundImage : UIImage?
     
-    var emojis: [EmojiArt.Emoji] { emoji.emojis }
-    
     //MARK: - Intent(s)
-
-    func addEmoji(_ emoji: String, at location:CGPoint, size: CGFloat) {
-        emojiArt.addEmoji(emoji, x: Int(location.x), y: Int(location.y), size: Int(size))
-    }
+    var emojis: [EmojiArt.Emoji] { emojiArt.emojis }
     
-    func moveEmoji(_ emoji: EmojiArt.Emoji, by offset: CGSize){
+    func addEmoji(_ emoji: String, at location:CGPoint, size: CGFloat) {
+        emojiArt.addEmoji(emoji, x: Int(location.x), y: Int(location.y), size: Int(size))}
+    
+    func moveEmoji(_ emoji: EmojiArt.Emoji, by offset: CGSize) {
         if let index = emojiArt.emojis.firstIndex(matching: emoji) {
            emojiArt.emojis[index].x += Int(offset.width)
            emojiArt.emojis[index].y += Int(offset.height)
@@ -60,9 +75,10 @@ class EmojiArtDocument: ObservableObject
     }
 }
 extension EmojiArt.Emoji {
-    var fontSize : CGFloat { CGFloat(self.size)}
-    var location: CGFloat { CGPoint(x: CGFloat(x), y: CGFloat(y))
+    var fontSize : CGFloat {CGFloat (self.size)}
+    var location: CGFloat {CGPoint (x: CGFloat(x), y: CGFloat(y))
         
     }
-}
+ }
+
 
