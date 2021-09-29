@@ -75,10 +75,8 @@ class EmojiArtDocument: ObservableObject
     }
 }
 extension EmojiArt.Emoji {
-    var fontSize : CGFloat {CGFloat (self.size)}
-    var location: CGFloat {CGPoint (x: CGFloat(x), y: CGFloat(y))
-        
-    }
- }
+    var fontSize: CGFloat {CGFloat(self.size)}
+    var location: CGPoint { CGPoint(x: CGFloat(x), y: CGFloat(y))}
+}
 
 
