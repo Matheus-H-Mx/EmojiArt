@@ -15,7 +15,7 @@ struct EmojiArtDocumentView: View {
     var body: some View {
         VStack {
             HStack {
-                PaletteChooser(chosenPalette: $chosenPalette, document: document)
+                PaletteChooser(document: document, chosenPalette: $chosenPalette)
                 ScrollView(.horizontal){
                     HStack {
                         ForEach(chosenPalette.map { String($0)}, id: \.self ){ emoji in
@@ -26,6 +26,7 @@ struct EmojiArtDocumentView: View {
                     }
                 }
                 .onAppear{self.chosenPalette = self.document.defaultPalette}
+                .layoutPriority(1)
             }
             
             GeometryReader { geometry in
