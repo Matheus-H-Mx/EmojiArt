@@ -29,7 +29,7 @@ struct PaletteChooser: View {
                     self.showPaletteEditor = true
                 }
                 .sheet(isPresented: $showPaletteEditor) {
-                    PaletteEditor(chosenPalette: $chosenPalette)
+                    PaletteEditor(chosenPalette: self.$chosenPalette, isShowing: $showPaletteEditor)
                         .environmentObject(self.document)
                         .frame(minWidth: 300, minHeight: 500)
                 }
@@ -43,6 +43,7 @@ struct PaletteEditor: View {
     @EnvironmentObject var document: EmojiArtDocument
     
     @Binding var chosenPalette: String
+    @Binding var isShowing: Bool
     @State private var emojisToAdd: String = ""
     @State private var paletteName: String = ""
     
@@ -52,7 +53,9 @@ struct PaletteEditor: View {
                 Text("Palette Editor").font(.headline).padding()
                 HStack{
                     Spacer()
-                    Button (action: {}, label: { Text("Done")}).padding()
+                    Button (action: {
+                        self.isShowing = false
+                    }, label: { Text("Done")}).padding()
                         
                     }
                 }
@@ -73,8 +76,9 @@ struct PaletteEditor: View {
                 }
                 
                 Section(header: Text("Remove Emoji")) {
-                    Grid (chosenPalette.map { String($0) }, id: \.self ) { emoji in
-                        Text (emoji).font(Font.system(size: self.fontSize))
+                    Grid (chosenPalette.map { String($0) }, id: \.self) { emoji in
+                        Text (emoji)
+                            .font(Font.system(size: self.fontSize))
                             .onTapGesture {
                                 self.chosenPalette = self.document.removeEmoji(emoji, fromPalette: self.chosenPalette)
                         }
@@ -86,6 +90,8 @@ struct PaletteEditor: View {
         .onAppear { self.paletteName = self.document.paletteNames[self.chosenPalette] ?? "" }
     }
     
+    // MARK: - Drawing Constants
+
     var height: CGFloat {
         CGFloat((chosenPalette.count - 1) / 6) * 70 + 70
     }
