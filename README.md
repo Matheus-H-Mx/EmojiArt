@@ -4,7 +4,7 @@
 <p align="left">
     <img windth="250"  height="450" src="https://user-images.githubusercontent.com/74945355/148328110-7bdc639f-ddd8-48b4-b2ca-94e58ccc0281.gif">
 
-    <img src="https://user-images.githubusercontent.com/74945355/148335757-f6ee5b75-08b1-4a67-811c-100dadf28c4c.gif">
+    <img windth="250"  height="450" src="">
 
 
 ### Gif das funções
