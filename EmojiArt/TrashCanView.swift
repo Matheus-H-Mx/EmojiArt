@@ -29,7 +29,7 @@ struct TrashCanView: View {
     private let trashCanBackgroundCornerRadius: CGFloat = 5.0
     private let trashCanBackgroundOpacity: Double = 0.75
 }
-
+//
 //struct TrashCanView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        TrashCanView()

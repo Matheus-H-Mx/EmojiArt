@@ -30,7 +30,7 @@ struct EmojiArtDocumentChooser: View {
                 }
             }
         }
-        .environment(\.editMode, $editMode)
+        
         .navigationBarTitle(self.store.name)
         .navigationBarItems(leading: Button(action: {
             self.store.addDocument()
@@ -39,6 +39,7 @@ struct EmojiArtDocumentChooser: View {
         }),
             trailing: EditButton()
             )
+        .environment(\.editMode, $editMode)
         }
     }
 }

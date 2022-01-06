@@ -13,7 +13,7 @@ struct OptionalImage: View {
         var body:some View{
             Group {
                 if uiImage != nil {
-                    Image(uiImage: uiImage!)//.resizable()
+                    Image(uiImage: uiImage!).resizable()
                 }
             }
         }
