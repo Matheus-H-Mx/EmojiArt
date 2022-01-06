@@ -6,7 +6,6 @@
 
     <img windth="250"  height="450" src="https://user-images.githubusercontent.com/74945355/148335031-4a633a82-94f2-46a5-9076-28ad6f65622b.gif">
 
-![URL-EMOJI-ART](https://user-images.githubusercontent.com/74945355/148335031-4a633a82-94f2-46a5-9076-28ad6f65622b.gif)
 ### Gif das funções
     nesse projeto verá a utilização dos recursos:
     - SwiftUI
